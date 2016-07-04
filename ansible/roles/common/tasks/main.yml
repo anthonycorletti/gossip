@@ -1,0 +1,15 @@
+---
+- name: update apt and install basics
+  apt: name={{ item }} update_cache=yes state=present
+  sudo: yes
+  with_items:
+    - git
+    - make
+    - fail2ban
+
+- name: install global environment
+  copy: src=env.sh dest={{ common.env_file }}
+  sudo: yes
+
+- name: load the env changes
+  shell: . {{ common.env_file }}

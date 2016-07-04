@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="gossip"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>gossip</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body ng-controller="index">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{ room }}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+<!--             <li class="active"><a href="#">Home</a></li> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="main-container container-fluid">
+
+        <div class="row master-row">
+
+            <div id="room-contents" class="col-xs-12 col-md-9 col-lg-9 col-xl-9">
+
+                <div id="room-messages" ng-controller="message-box">
+                    <div ng-repeat="message in messages" class="message-row row">
+                        <div class="message-wrapper col-xs-12 col-md-12 col-lg-12 col-xl-12" >
+                            <message class="{{ message.type }}" message="message"></message>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="input-row" class="row">
+                    <div id="input-col" class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
+                        <textarea id="chat-input" class="js-auto-size" rows="1"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-controller="members" id="room-members" class="col-xs-12 col-md-3 col-lg-3 col-xl-3">
+                <div class="member" ng-repeat="user in users | orderBy:nameDesc" data-id="{{ user.id }}">
+                    <div class="row">
+                        <div class="member-name col-xs-12 col-md-8 col-lg-8 col-xl-8">{{ user.username }}</div>
+                        <div class="member-icons col-xs-12 col-md-4 col-lg-4 col-xl-4">icons</div>
+                    </div>
+                    <div class="row">
+                        <div class="member-status col-xs-12 col-md-12 col-lg-12 col-xl-12"><small><i>{{ user.status }}</i></small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.container -->
+
+    <div class="join-modal modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Join Room</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="username-field" class="form-control" placeholder="username">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="join-button" class="btn btn-primary" onclick="socket.join();">Join</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/textarea-autosize.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/app.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            initializeUI();
+        });
+    </script>
+</body></html>

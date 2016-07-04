@@ -1,0 +1,194 @@
+@navBar-padding: 1.5em;
+@message-padding: 20px;
+
+// @dark-blue: #0092e0;
+// @dark-grey: #333333;
+//
+// @base-green: #83d6b6;
+//
+// @base-fore: #eeeeee;
+// @base-back: #e4e8f6;
+
+
+@dark-blue: #1C1D21;
+@dark-grey: #31353D;
+@base-grey: #445878;
+@base-white: #EEEFF7;
+@teal: #92CDCF;
+
+html, body {
+    height: 100%;
+}
+
+.main-container {
+    height: 100%;
+}
+
+.navbar {
+    background-color: @base-grey;
+
+    .navbar-brand {
+        color: @base-white;
+    }
+}
+
+.master-row {
+    height: 100%;
+    padding-top: 3em; // dynamically set, fallback
+    overflow: hidden;
+
+    #room-contents {
+        height: 100%;
+        background-color: @dark-blue;
+
+        #room-messages {
+            width: 100%;
+            height: 90%;
+            background-color: @dark-blue;
+
+            padding-top: @navBar-padding;
+            overflow-y: scroll;
+
+            .message-row {
+                width: 100%;
+                padding-left: 1em;
+                padding-right: 1em;
+
+                .message-wrapper {
+                    min-height: 2em;
+                    padding-left: 0;
+
+                    .mine, .general-message, .server-message {
+                        color: @base-white;
+
+                        p {
+                            // display: inline-block;
+                            padding-left: @message-padding;
+                        }
+
+                        h1, h2, h3 {
+                            margin-top: 10px;
+                            padding-left: @message-padding;
+                        }
+
+                        .author-line {
+                        }
+
+                        .time {
+                            font-size: 0.8em;
+                            font-style: italic;
+                            padding-left: 10px;
+                            color: lighten(@dark-blue, 20%);
+                        }
+                    }
+
+                    .mine {
+                        color: lighten(@dark-blue, 20%);
+
+                        // darken all backgrounds from yourself
+                        pre, code, blockquote {
+                            color: darken(@base-white, 30%);
+                            background-color: lighten(@dark-blue, 10%);
+                            border: none;
+                        }
+
+                        pre > code {
+                            color: lighten(@dark-blue, 40%);
+                        }
+
+                        code {
+                            color: #c7254e; // bootstrap color
+                        }
+                    }
+
+                    .general-message {
+
+                        pre, code, blockquote {
+                            color: lighten(@dark-blue, 10%);
+                            background-color: @base-white;
+                            border: none;
+                        }
+
+                        pre > code {
+                            color: @dark-grey;
+                        }
+
+                        code {
+                            color: #c7254e; // bootstrap color
+                        }
+                    }
+
+                    .server-message {
+                        color: #92A3FF;
+                    }
+                }
+            }
+        }
+
+        #input-row {
+            height: 10%;
+            padding: 0;
+
+            #input-col {
+                height: 100%;
+                padding: 0;
+
+                .expanding-wrapper {
+                    // height: 100%;
+                    width: 100%;
+                    position: absolute !important;
+                    bottom: 0;
+                }
+
+                #chat-input {
+                    width: 100%;
+
+                    position: absolute !important;
+                    bottom: 0 !important;
+                    box-sizing: border-box;
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                }
+            }
+
+            #send-button {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    #room-members {
+        height: 100%;
+
+        padding-left: 0;
+        padding-right: 0;
+
+        color: @base-white;
+        background-color: lighten(@dark-blue, 5%);
+
+        .member {
+            border-bottom: 1px solid #777;
+
+            padding-left: 1em;
+            padding-right: 1em;
+
+            .member-name {
+
+            }
+
+            .member-icons {
+                text-align: right;
+            }
+
+            .member-status {
+                color: lighten(@dark-grey, 30%);
+            }
+        }
+    }
+}
+
+.alert-short {
+    width: 50%;
+    margin-left: 25%;
+}

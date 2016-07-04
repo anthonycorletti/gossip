@@ -1,0 +1,20 @@
+---
+- name: install nginx
+  apt: name=nginx state=present
+  sudo: yes
+
+- name: template nginx config
+  template: src=nginx.conf dest={{ nginx.config.available_dir }}/{{ nginx.config.name }}
+  sudo: yes
+
+- name: enable nginx config with symlink
+  file: src={{ nginx.config.available_dir }}/{{ nginx.config.name }} dest={{ nginx.config.enabled_dir }}/{{ nginx.config.name }} state=link
+  sudo: yes
+
+- name: disable default nginx config
+  file: path={{ nginx.config.enabled_dir }}/default state=absent
+  sudo: yes
+
+- name: reload nginx
+  service: name=nginx state=reloaded enabled=yes
+  sudo: yes

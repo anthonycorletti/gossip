@@ -1,0 +1,6 @@
+---
+nginx:
+  config:
+    available_dir: /etc/nginx/sites-available
+    enabled_dir: /etc/nginx/sites-enabled
+    name: codehome

@@ -1,0 +1,8 @@
+---
+- hosts: all_servers
+  name: gathers facts about all known servers
+
+- hosts: api_servers
+  roles:
+    # - common
+    - api

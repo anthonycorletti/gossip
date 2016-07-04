@@ -1,0 +1,17 @@
+{
+    "verbosity": 3,
+    "quiet": false,
+    "logPath": "./logs",
+
+    "web": {
+        "port": 8765
+    },
+
+    "chat": {
+        "port": 7654
+    },
+
+    "database": {
+        "hosts": ["localhost"]
+    }
+}

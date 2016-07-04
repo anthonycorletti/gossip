@@ -1,0 +1,8 @@
+---
+database_hosts: >
+  [{%- for host in groups.db_servers -%}
+  "{{ hostvars[host].ansible_eth1['ipv4']['address'] }}"
+  {%- if not loop.last -%}
+  ,
+  {%- endif -%}
+  {% endfor %}]

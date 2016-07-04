@@ -1,0 +1,5 @@
+---
+- hosts: []
+# this is a faux role
+# it is to qualm Vagrant needing a playbook to generate
+# the inventory the Makefile/Ansible use

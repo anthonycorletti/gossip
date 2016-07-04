@@ -1,0 +1,3 @@
+---
+common:
+  env_file: /etc/profile.d/codehome.sh

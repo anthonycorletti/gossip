@@ -1,0 +1,65 @@
+---
+- name: force IP fetching
+  setup: filter='filter=ansible_eth[0-2]'
+  sudo: yes
+
+- name: install pre-reqs
+  apt: name={{ item }} state=present
+  sudo: yes
+  with_items:
+    - golang
+    - make
+    - git
+    - bzr
+    - mercurial
+    - nodejs
+    - npm
+
+- name: fix nodejs binary
+  file: path=/usr/bin/node src=/usr/bin/nodejs state=link
+  sudo: yes
+
+- name: make gopath
+  file: path=/go state=directory owner=vagrant group=vagrant mode=4775
+  sudo: yes
+
+- name: make gobin
+  file: path=/go/bin state=directory owner=vagrant group=vagrant mode=4775
+  sudo: yes
+
+- name: reload environment
+  shell: . /etc/profile
+
+- name: install depman
+  shell: go get github.com/vube/depman
+  sudo: yes
+  environment:
+    GOPATH: /go
+    GOBIN: /usr/local/bin
+
+- name: copy source
+  synchronize: src=../../../../ dest=/tmp/gossip
+  sudo: yes
+
+- name: build and install api
+  shell: cd /tmp/gossip && make install
+  sudo: yes
+  environment:
+    GOPATH: /go
+
+- name: change serve directory owner
+  file: path=/srv/gossip owner=vagrant group=vagrant mode=4755 recurse=yes
+  sudo: yes
+
+- name: template config
+  template: src=config.json dest=/srv/gossip/config.json
+
+- name: install api service
+  copy: src=upstart.conf dest=/etc/init/gossip.conf
+  sudo: yes
+
+- name: start the service
+  service: name=gossip state=restarted enabled=yes
+  sudo: yes
+
+- include: nginx.yml

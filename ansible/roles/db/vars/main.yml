@@ -1,0 +1,4 @@
+---
+mongo:
+    interface: "{{ ansible_eth1['ipv4']['address'] }}"
+    port: 27017

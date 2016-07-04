@@ -1,0 +1,15 @@
+---
+- name: install databases
+  apt: name={{ item }} state=present
+  sudo: yes
+  with_items:
+    - mongodb
+    - redis-server
+
+- name: configure mongo
+  template: src=mongo.conf dest=/etc/mongodb.conf
+  sudo: yes
+
+- name: restart mongo
+  service: name=mongodb state=restarted
+  sudo: yes

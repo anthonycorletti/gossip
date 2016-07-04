@@ -1,0 +1,5 @@
+---
+- hosts: db_servers
+  roles:
+    # - common
+    - db

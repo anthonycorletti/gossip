@@ -1,0 +1,42 @@
+{
+	"flags": {
+		"repo": "github.com/jessevdk/go-flags",
+		"version": "37c8226983775d404b6edfebd44be1078bd0fe95",
+		"type": "git"
+	},
+	"markdown": {
+		"repo": "github.com/russross/blackfriday",
+		"version": "7680f7fdeb0d57222f62d02802af5e3585722384",
+		"type": "git"
+	},
+	"martini": {
+		"repo": "github.com/go-martini/martini",
+		"version": "master",
+		"type": "git"
+	},
+	"martini-gzip": {
+		"repo": "github.com/martini-contrib/gzip",
+		"version": "master",
+		"type": "git"
+	},
+	"martini-render": {
+		"repo": "github.com/martini-contrib/render",
+		"version": "master",
+		"type": "git"
+	},
+	"mgo": {
+		"repo": "labix.org/v2/mgo",
+		"version": "r2014.03.12",
+		"type": "bzr"
+	},
+	"uuid": {
+		"repo": "code.google.com/p/go-uuid/uuid",
+		"version": "tip",
+		"type": "hg"
+	},
+	"websockets": {
+		"repo": "code.google.com/p/go.net/websocket",
+		"version": "tip",
+		"type": "hg"
+	}
+}
